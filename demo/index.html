@@ -2,7 +2,7 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>client-excel-module 데모</title>
+    <title>client-excel-module DEMO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
@@ -21,17 +21,17 @@
     </style>
   </head>
   <body>
-    <h1>client-excel-module 데모</h1>
+    <h1>client-excel-module DEMO</h1>
 
     <div class="section">
-      <h2>엑셀 업로드</h2>
+      <h2>excel upload</h2>
       <input type="file" id="uploadInput" accept=".xlsx,.xls" />
       <pre id="uploadResult"></pre>
     </div>
 
     <div class="section">
-      <h2>엑셀 다운로드</h2>
-      <button id="downloadBtn">샘플 엑셀 다운로드</button>
+      <h2>excel download</h2>
+      <button id="downloadBtn">sample excel download</button>
       <label>
         파일 형식:
         <select id="fileType">
@@ -55,7 +55,7 @@
           const sheets = await uploadExcel(file);
           uploadResult.textContent = JSON.stringify(sheets, null, 2);
         } catch (e) {
-          uploadResult.textContent = "❌ 업로드 실패: " + e;
+          uploadResult.textContent = "❌ upload error: " + e;
         }
       });
     </script>
