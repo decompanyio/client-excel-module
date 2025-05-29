@@ -1,11 +1,12 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import fs from "fs";
+import terser from "@rollup/plugin-terser";
 
 const srcDir = resolve(__dirname, "src");
 const entries = fs
   .readdirSync(srcDir)
-  .filter((f) => f.endsWith(".ts") && f !== "demo.ts")
+  .filter((f) => f.endsWith(".ts") && !f.startsWith("demo/"))
   .reduce((acc, file) => {
     const name = file.replace(/\.ts$/, "");
     acc[name] = resolve(srcDir, file);
@@ -26,6 +27,13 @@ export default defineConfig({
         chunkFileNames: "[name]-[hash].js",
         assetFileNames: "[name]-[hash][extname]",
       },
+      plugins: [
+        terser({
+          compress: {
+            drop_debugger: true,
+          },
+        }),
+      ],
     },
     emptyOutDir: true,
   },

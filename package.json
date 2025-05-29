@@ -1,6 +1,6 @@
 {
   "name": "client-excel-module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,7 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
     "xlsx": "^0.18.5",
     "xlsx-js-style": "^1.2.0"
   }
