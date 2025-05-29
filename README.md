@@ -31,7 +31,7 @@ pnpm dev
 
 `http://localhost:5173/demo/index.html` 접속.
 
-demo.ts 가면 데모용 ts 파일 확인 가능.
+demo 폴더 가면 데모용 ts 파일 확인 가능.
 
 ## 사용법
 
