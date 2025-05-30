@@ -1,6 +1,6 @@
 {
   "name": "client-excel-module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -27,5 +27,9 @@
     "@rollup/plugin-terser": "^0.4.4",
     "xlsx": "^0.18.5",
     "xlsx-js-style": "^1.2.0"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   }
 }
