@@ -17,7 +17,8 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build"
+    "sync-version": "node sync-version-from-tag.cjs",
+    "build": "pnpm run sync-version && tsc && vite build"
   },
   "devDependencies": {
     "@types/node": "^22.15.23",
