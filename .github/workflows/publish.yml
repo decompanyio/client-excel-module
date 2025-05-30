@@ -36,6 +36,9 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
+      - name: Sync version from tag
+        run: node sync-version-from-tag.cjs
+
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
