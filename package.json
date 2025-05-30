@@ -1,5 +1,7 @@
 {
   "name": "client-excel-module",
+  "author": "ps-jary",
+  "private": false,
   "version": "1.0.2",
   "type": "module",
   "main": "dist/index.js",
