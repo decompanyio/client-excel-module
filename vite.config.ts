@@ -1,33 +1,27 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
-import fs from "fs";
 import terser from "@rollup/plugin-terser";
-
-const srcDir = resolve(__dirname, "src");
-const entries = fs
-  .readdirSync(srcDir)
-  .filter((f) => f.endsWith(".ts") && !f.startsWith("demo/"))
-  .reduce((acc, file) => {
-    const name = file.replace(/\.ts$/, "");
-    acc[name] = resolve(srcDir, file);
-    return acc;
-  }, {} as Record<string, string>);
+import dts from "vite-plugin-dts";
 
 export default defineConfig({
   build: {
     lib: {
-      entry: entries,
-      formats: ["es", "cjs"],
+      entry: resolve(__dirname, "src/index.ts"),
+      formats: ["es"],
+      fileName: () => "index.js",
     },
     outDir: "dist",
     rollupOptions: {
-      input: entries,
+      external: ["xlsx", "xlsx-js-style"],
       output: {
-        entryFileNames: "[name].js",
-        chunkFileNames: "[name]-[hash].js",
-        assetFileNames: "[name]-[hash][extname]",
+        entryFileNames: "index.js",
       },
       plugins: [
+        dts({
+          entryRoot: "src",
+          outDir: "dist",
+          rollupTypes: true,
+        }),
         terser({
           compress: {
             drop_debugger: true,

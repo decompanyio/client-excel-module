@@ -1,4 +1,4 @@
-import { downloadExcel, uploadExcel } from "..";
+import { downloadExcel, uploadExcel } from "../../dist/index.js";
 
 const sampleData = {
   Sheet1: [
