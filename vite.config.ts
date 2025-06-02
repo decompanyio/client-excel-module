@@ -4,6 +4,13 @@ import terser from "@rollup/plugin-terser";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
+  plugins: [
+    dts({
+      entryRoot: "src",
+      outDir: "dist",
+      rollupTypes: true,
+    }),
+  ],
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
@@ -17,11 +24,6 @@ export default defineConfig({
         entryFileNames: "index.js",
       },
       plugins: [
-        dts({
-          entryRoot: "src",
-          outDir: "dist",
-          rollupTypes: true,
-        }),
         terser({
           compress: {
             drop_debugger: true,
