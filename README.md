@@ -64,25 +64,25 @@ uploadExcel(file, { headerRowIndex: 0, headerRowCount: 2 });
 import { downloadExcel } from "client-excel-module";
 
 // Basic usage (single sheet)
-downloadExcel(
-  {
+downloadExcel({
+  sheetsData: {
     Sheet1: [
       { Name: "Hong Gil-dong", Age: 30 },
       { Name: "Kim Cheol-soo", Age: 25 },
     ],
   },
-  "sample"
-);
+  filename: "sample",
+});
 
 // Advanced usage (multiple sheets, multi-row headers, and styles)
-downloadExcel(
-  {
+downloadExcel({
+  sheetsData: {
     Sheet1: [{ Name: "Hong Gil-dong", Age: 30 }],
     Sheet2: [{ Name: "Tom", Age: 40 }],
   },
-  "multi-sheet",
-  "xlsx",
-  {
+  filename: "multi-sheet",
+  type: "xlsx",
+  styleOptions: {
     headerStyle: {
       fill: { fgColor: { rgb: "FF0000" } },
     },
@@ -90,14 +90,14 @@ downloadExcel(
       font: { sz: 12 },
     },
   },
-  {
+  multiHeadersMap: {
     Sheet1: [
       ["이름", "나이"],
       ["Name", "Age"],
     ],
     Sheet2: [["Name", "Age"]],
-  }
-);
+  },
+});
 ```
 
 ### Download Options
@@ -123,9 +123,10 @@ downloadExcel(
 pnpm dev
 ```
 
-Open your browser and navigate to:
+After running the above command, open your browser and go to:  
 [http://localhost:5173/demo/index.html](http://localhost:5173/demo/index.html)
-You can check out the demo TypeScript files in the `/demo` folder.
+
+You can create your own demo or test pages by adding files under the `/demo` folder.
 
 ---
 
