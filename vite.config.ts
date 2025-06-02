@@ -19,7 +19,6 @@ export default defineConfig({
     },
     outDir: "dist",
     rollupOptions: {
-      external: ["xlsx", "xlsx-js-style"],
       output: {
         entryFileNames: "index.js",
       },
