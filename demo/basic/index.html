@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>client-excel-module DEMO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 2rem;
+      }
+      .section {
+        margin-bottom: 2rem;
+      }
+      input[type="file"] {
+        margin-bottom: 1rem;
+      }
+      select {
+        margin-left: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>client-excel-module DEMO</h1>
+
+    <div class="section">
+      <h2>Excel Upload</h2>
+      <input type="file" id="uploadInput" accept=".xlsx,.xls" />
+      <pre id="uploadResult"></pre>
+    </div>
+
+    <div class="section">
+      <h2>Excel Download</h2>
+      <button id="downloadBtn">Sample Excel Download</button>
+      <label>
+        File type:
+        <select id="fileType">
+          <option value="xlsx">xlsx</option>
+          <option value="xls">xls</option>
+          <option value="csv">csv</option>
+          <option value="txt">txt</option>
+        </select>
+      </label>
+    </div>
+
+    <script type="module">
+      import { uploadExcel, downloadExcel } from "../../dist/index.js";
+
+      const uploadInput = document.getElementById("uploadInput");
+      const uploadResult = document.getElementById("uploadResult");
+      uploadInput?.addEventListener("change", async () => {
+        const file = uploadInput.files?.[0];
+        if (!file) return;
+        try {
+          const sheets = await uploadExcel(file);
+          uploadResult.textContent = JSON.stringify(sheets, null, 2);
+        } catch (e) {
+          uploadResult.textContent = "❌ upload error: " + e;
+        }
+      });
+
+      document.getElementById("downloadBtn")?.addEventListener("click", () => {
+        const fileType = document.getElementById("fileType").value;
+        downloadExcel({
+          sheetsData: {
+            Sheet1: [
+              { Name: "Hong Gil-dong", Age: 30 },
+              { Name: "Kim Cheol-soo", Age: 25 },
+            ],
+          },
+          filename: "sample",
+          type: fileType,
+        });
+      });
+    </script>
+  </body>
+</html>

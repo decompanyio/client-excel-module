@@ -1,2 +1,2 @@
-export * from "./core/downloadExcel";
-export * from "./core/uploadExcel";
+export * from "@/core/downloadExcel.ts";
+export * from "@/core/uploadExcel.ts";

@@ -1,7 +1,7 @@
 # client-excel-module
 
 > A TypeScript client module for **uploading (parsing)** and **downloading (generating)** Excel files.
-> Built on `xlsx` and `xlsx-js-style`, it supports multiple sheets, multi-row headers, cell styles, and more with ease.
+> `XLSX` to more easily provide the various features you need.
 
 ---
 
@@ -124,7 +124,7 @@ pnpm dev
 ```
 
 After running the above command, open your browser and go to:  
-[http://localhost:5173/demo/index.html](http://localhost:5173/demo/index.html)
+[http://localhost:5173/demo/basic/index.html](http://localhost:5173/demo/basic/index.html)
 
 You can create your own demo or test pages by adding files under the `/demo` folder.
 

@@ -1,0 +1,10 @@
+# .npmignore
+node_modules/
+src/
+.github/
+*.config.js
+*.config.ts
+tsconfig.json
+vite.config.ts
+sync-version-from-tag.cjs
+.git*
