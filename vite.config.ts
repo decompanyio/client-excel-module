@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
-import terser from "@rollup/plugin-terser";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
@@ -11,6 +10,11 @@ export default defineConfig({
       rollupTypes: true,
     }),
   ],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "src"),
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
@@ -22,14 +26,6 @@ export default defineConfig({
       output: {
         entryFileNames: "index.js",
       },
-      plugins: [
-        terser({
-          compress: {
-            drop_debugger: true,
-            drop_console: true,
-          },
-        }),
-      ],
     },
     emptyOutDir: true,
   },

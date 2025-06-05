@@ -1,4 +1,4 @@
-import * as XLSX from "xlsx";
+import * as XLSX from "xlsx-js-style";
 
 /**
  * 엑셀 파일을 읽어 여러 시트의 데이터를 JSON 배열로 반환합니다.
