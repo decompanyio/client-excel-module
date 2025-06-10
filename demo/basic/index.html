@@ -30,7 +30,7 @@
     </div>
 
     <div class="section">
-      <h2>Excel Download</h2>
+      <h2>Excel Download (Basic)</h2>
       <button id="downloadBtn">Sample Excel Download</button>
       <label>
         File type:
@@ -43,9 +43,15 @@
       </label>
     </div>
 
+    <div class="section">
+      <h2>Excel Download (columns/formatting + all column features)</h2>
+      <button id="downloadColBtn">Sample Excel Download (sheetsCol)</button>
+    </div>
+
     <script type="module">
       import { uploadExcel, downloadExcel } from "../../dist/index.js";
 
+      // Upload
       const uploadInput = document.getElementById("uploadInput");
       const uploadResult = document.getElementById("uploadResult");
       uploadInput?.addEventListener("change", async () => {
@@ -59,6 +65,7 @@
         }
       });
 
+      // Basic Download
       document.getElementById("downloadBtn")?.addEventListener("click", () => {
         const fileType = document.getElementById("fileType").value;
         downloadExcel({
@@ -72,6 +79,55 @@
           type: fileType,
         });
       });
+
+      // Download with columns/formatting + all column features example
+      document
+        .getElementById("downloadColBtn")
+        ?.addEventListener("click", () => {
+          downloadExcel({
+            sheetsData: {
+              Sheet1: [
+                { name: "test", age: 30, birth: "1990-01-01", active: true },
+                { name: "홍길동", age: 25, birth: "2000-05-10", active: false },
+              ],
+            },
+            sheetsCol: {
+              Sheet1: [
+                {
+                  key: "name",
+                  header: "이름",
+                  formatter: (v) => `[${v}]`,
+                  style: { font: { color: { rgb: "FF0000" }, bold: true } },
+                  width: 10,
+                },
+                {
+                  key: "age",
+                  header: "나이",
+                  formatter: (v) => `${v}살`,
+                  style: { alignment: { horizontal: "center" } },
+                },
+                {
+                  key: "birth",
+                  header: "생년월일",
+                  formatter: (v) => (v ? new Date(v).toLocaleDateString() : ""),
+                  style: { font: { color: { rgb: "0000FF" } } },
+                },
+                {
+                  key: "active",
+                  header: "활성",
+                  formatter: (v) => (v ? "O" : "X"),
+                  style: { font: { italic: true } },
+                },
+              ],
+            },
+            filename: "test-columns-all",
+            type: "xlsx",
+            styleOptions: {
+              headerStyle: { fill: { fgColor: { rgb: "4F81BD" } } },
+              bodyStyle: { font: { sz: 12 } },
+            },
+          });
+        });
     </script>
   </body>
 </html>
