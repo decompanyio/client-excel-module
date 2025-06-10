@@ -65,7 +65,28 @@ uploadExcel(file, { headerRowIndex: 0, headerRowCount: 2 });
 ## 📥 Downloading Excel Files
 
 ```ts
-import { downloadExcel } from "client-excel-module";
+import { downloadExcel, DownloadExcelOptions } from "client-excel-module";
+
+// usage type
+export type ClientExcelDownloadProps = DownloadExcelOptions<any>;
+
+export const clientExcelDownloadHandler = ({
+  sheetsData,
+  sheetsCol,
+  filename = "excel",
+  type = "xlsx",
+  styleOptions,
+  multiHeadersMap,
+}: ClientExcelDownloadProps) => {
+  downloadExcel({
+    sheetsData,
+    sheetsCol,
+    filename,
+    type,
+    styleOptions,
+    multiHeadersMap,
+  });
+};
 
 // Basic usage (single sheet)
 downloadExcel({
@@ -133,7 +154,7 @@ downloadExcel({
 | ----------------- | ----------------------------------------- | -------------------------------------------------- | ------------ |
 | `sheetsData`      | `Record<string, T[]>`                     | Object containing sheet data                       | **Required** |
 | `sheetsCol`       | `Record<string, ExcelColumn<T>[]>`        | Column definitions per sheet (optional, see below) | Optional     |
-| `filename`        | `string`                                  | Filename to save (without extension)               | **Required** |
+| `filename`        | `string`                                  | Filename to save (without extension)               | Optional     |
 | `type`            | `"xlsx"` \| `"xls"` \| `"csv"` \| `"txt"` | File format to save                                | `"xlsx"`     |
 | `styleOptions`    | `{ headerStyle?, bodyStyle? }`            | Optional cell styling options                      | Optional     |
 | `multiHeadersMap` | `Record<string, string[][]>`              | Multi-row headers per sheet (2D array)             | Optional     |
