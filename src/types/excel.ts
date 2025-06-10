@@ -13,8 +13,8 @@ export type ExcelColumn<T> = {
 
 export type DownloadExcelOptions<T extends object> = {
   sheetsData: Record<string, T[]>;
-  sheetsCol: Record<string, ExcelColumn<T>[]>;
-  filename: string;
+  sheetsCol?: Record<string, ExcelColumn<T>[]>;
+  filename?: string;
   type?: ExcelExportType;
   styleOptions?: {
     headerStyle?: ExcelCellStyle;

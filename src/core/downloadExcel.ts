@@ -14,7 +14,7 @@ export const downloadExcel = <T extends object>(
   const {
     sheetsData, // 각 시트별 데이터
     sheetsCol, // 각 시트별 컬럼 정의 (헤더, 포맷터, 스타일 등)
-    filename, // 저장 파일명
+    filename = "sheet", // 저장 파일명
     type = "xlsx", // 파일 타입 (기본값: xlsx)
     styleOptions, // 전체 헤더/바디 스타일
     multiHeadersMap, // 멀티 헤더(2차원 배열) 정의
